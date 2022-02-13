@@ -34,7 +34,7 @@ def reset_finger_joints():
     ring_angle = 0 / 180
     pinky_angle = 0/ 180
     set_finger_joints()
-    time.Sleep(0.25)
+    time.sleep(0.25)
 
 def move_servos():
     set_finger_joints()
