@@ -1,5 +1,5 @@
 from gpiozero import Servo
-import time
+import time import sleep
 
 pinky_servo = Servo(1)
 ring_servo = Servo(2)
@@ -9,16 +9,16 @@ thumb_servo = Servo(5)
 wrist_servo = Servo(6)
 
 wrist_offset_angle = 0
-default_wrist_angle = 90
-press_key_angle = 30 / 180
+default_wrist_angle = wrist_servo.mid()
+press_key_angle = 30 / 180 # 30 of 180 degrees 
 
-thumb_angle = 0 / 180
-pointer_angle = 0 / 180
-middle_angle = 0 / 180
-ring_angle = 0 / 180
-pinky_angle = 0/ 180
+pinky_angle = pinky_servo.mid()
+ring_angle = ring_servo.mid()
+middle_angle = middle_servo.mid()
+pointer_angle = pointer_servo.mid()
+thumb_angle = thumb_servo.mid()
 
-keys = ["C3","C#","D","D#","E","F","F#","G","G#","A","A#","B","C4"]
+keys = ["C3", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C4"]
 
 def set_finger_joints():
     thumb_servo.value = thumb_angle
@@ -28,18 +28,18 @@ def set_finger_joints():
     pinky_servo.value = pinky_angle
 
 def reset_finger_joints():
-    thumb_angle = 0 / 180
-    pointer_angle = 0 / 180
-    middle_angle = 0 / 180
-    ring_angle = 0 / 180
-    pinky_angle = 0/ 180
+    pinky_angle = pinky_servo.mid()
+    ring_angle = ring_servo.mid()
+    middle_angle = middle_servo.mid()
+    pointer_angle = pointer_servo.mid()
+    thumb_angle = thumb_servo.mid()
     set_finger_joints()
-    time.sleep(0.25)
+    sleep(0.25)
 
 def move_servos():
     set_finger_joints()
-    wrist_servo.value(default_wrist_angle + wrist_offset_angle)
-    time.sleep(0.3)
+    wrist_servo.value = default_wrist_angle + wrist_offset_angle
+    sleep(0.3)
 
 def set_angle(key):
     if key == "C3" :
